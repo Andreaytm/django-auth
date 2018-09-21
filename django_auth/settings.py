@@ -25,7 +25,7 @@ SECRET_KEY = 'w*+ku8f++3)*&6ch5h^m=ja+2!lou6gkgzpx*hb5x$fhcibg@='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [os.environ.get('C9_HOSTNAME')]
+ALLOWED_HOSTS = [os.environ.get("C9_HOSTNAME"), '127.0.0.1']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_forms_bootstrap',
     'accounts'
 ]
 
@@ -119,9 +120,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static")
+]
 
 MESSAGE_STORAGE="django.contrib.messages.storage.session.SessionStorage"
 
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
